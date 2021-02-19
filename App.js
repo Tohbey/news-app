@@ -3,7 +3,6 @@ import {  NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import HomePage from './src/screen/welcome';
 import Headlines from './src/tabs/headlines';
 import Sport from './src/tabs/sport';
 import Science from './src/tabs/science';
@@ -17,8 +16,8 @@ export default function App() {
 
   const createMaterialTopTabNavigator = () => {
     return(
-      <topTabs.Navigator>
-        <topTabs.Screen name="Headline" component={Headlines}/>
+      <topTabs.Navigator tabBarOptions={{labelStyle:{fontSize:12, textTransform:'capitalize'}}}>
+        <topTabs.Screen name="Headline" component={Headlines} />
         <topTabs.Screen name="Business" component={Business}/>
         <topTabs.Screen name="Sport" component={Sport}/>
         <topTabs.Screen name="Tech" component={Tech}/>
@@ -29,8 +28,8 @@ export default function App() {
   return (
     <NavigationContainer>
         <stack.Navigator>
-          <stack.Screen name="Welcome" component={HomePage}/>
-          <stack.Screen name="topTabs" children={createMaterialTopTabNavigator} />
+          <stack.Screen name="topTabs" children={createMaterialTopTabNavigator} 
+              options={{headerShown: false}}/>
         </stack.Navigator>
     </NavigationContainer>
   );
