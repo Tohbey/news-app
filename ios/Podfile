@@ -21,4 +21,6 @@ target 'news' do
   #  post_install do |installer|
   #    flipper_post_install(installer)
   #  end
+  pod 'react-native-uuid-generator', :path => '../node_modules/react-native-uuid-generator'
+
 end
