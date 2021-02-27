@@ -8,6 +8,8 @@ import{
     fetchTechNews
 } from '../redux/actions/news'
 import Card from '../components/card';
+import UUIDGenerator from 'react-native-uuid-generator';
+
 
 const tech = () => {
     let techNews = []
@@ -24,21 +26,20 @@ const tech = () => {
 
     const renderItem = ({item}) => (
         <Card author={item.author} 
-            title={item.title} imageUrl={item.urlToImage} 
+            title={item.title} imageUrl={item.urlToImage} key={UUIDGenerator.getRandomUUID()}
             publishedDate={item.publishedAt} description={item.description} 
         />
     );
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Headlines</Text>
-                    <FlatList 
-                        data={techNews}
-                        renderItem={renderItem}
-                    />
-            </View>
-        </ScrollView>
+        <View style={styles.container}>
+            <Text>Tech News</Text>
+                <FlatList 
+                    data={techNews}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.key}
+                />
+        </View>
     )
 }
 

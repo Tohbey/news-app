@@ -8,6 +8,7 @@ import{
     fetchSportNews
 } from '../redux/actions/news'
 import Card from '../components/card';
+import UUIDGenerator from 'react-native-uuid-generator';
 
 
 const sport = () => {
@@ -25,21 +26,20 @@ const sport = () => {
 
     const renderItem = ({item}) => (
         <Card author={item.author} 
-            title={item.title} imageUrl={item.urlToImage} 
+            title={item.title} imageUrl={item.urlToImage} key={UUIDGenerator.getRandomUUID()}
             publishedDate={item.publishedAt} description={item.description} 
         />
     );
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Sport World</Text>
-                <FlatList 
-                    data={sportNews}
-                    renderItem={renderItem}
-                />
-            </View>
-        </ScrollView>
+        <View style={styles.container}>
+            <Text>Sport News</Text>
+            <FlatList 
+                data={sportNews}
+                renderItem={renderItem}
+                keyExtractor={item => item.key}
+            />
+        </View>
     )
 }
 

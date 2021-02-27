@@ -25,24 +25,19 @@ const headlines = () => {
     const renderItem = ({item}) => (
         <Card author={item.author} 
             title={item.title} imageUrl={item.urlToImage} 
-            publishedDate={item.publishedAt} description={item.description} 
+            publishedDate={item.publishedAt} description={item.description} key={UUIDGenerator.getRandomUUID()}
         />
     );
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Headlines</Text>
-                    <FlatList 
-                        data={headlinesNews}
-                        renderItem={renderItem}
-                        keyExtractor={item => UUIDGenerator.getRandomUUID()}
-                    />
-            </View>
-            {UUIDGenerator.getRandomUUID((uuid) => {
-                console.log(uuid);
-            })}
-        </ScrollView>
+        <View style={styles.container}>
+            <Text>Top Stories</Text>
+                <FlatList 
+                    data={headlinesNews}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.key}
+                />
+        </View>
     )
 }
 

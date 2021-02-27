@@ -7,6 +7,8 @@ import{
     fetchBusinessNews
 } from '../redux/actions/news'
 import Card from '../components/card';
+import UUIDGenerator from 'react-native-uuid-generator';
+
 
 const business = () => {
     let businessNews = []
@@ -23,21 +25,20 @@ const business = () => {
 
     const renderItem = ({item}) => (
         <Card author={item.author} 
-            title={item.title} imageUrl={item.urlToImage} 
+            title={item.title} imageUrl={item.urlToImage} key={UUIDGenerator.getRandomUUID()}
             publishedDate={item.publishedAt} description={item.description} 
         />
     );
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Business World</Text>
-                <FlatList 
-                    data={businessNews}
-                    renderItem={renderItem}
-                />
-            </View>
-        </ScrollView>
+        <View style={styles.container}>
+            <Text>Business News</Text>
+            <FlatList 
+                data={businessNews}
+                renderItem={renderItem}
+                keyExtractor={item => item.key}
+            />
+        </View>
     )
 }
 
